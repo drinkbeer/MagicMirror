@@ -135,3 +135,7 @@ dmypy.json
 
 # Database
 *.sqlite3
+
+#
+media/.DS_Store
+media/images/.DS_Store

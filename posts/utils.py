@@ -37,7 +37,7 @@ def rank_similarity(upload_img_feature, imgs_features, top_n):
     print(similarities)
     return np.array(similarities)
 
-def get_top_n_similar(model_path='../models/research/slim/resnet_v2_graph/frozen_inference_graph.pb', 
+def get_top_n_similar(model_path='./media/resource/frozen_inference_graph.pb', 
                         output_args='import/resnet_v2_50/block3/unit_6/bottleneck_v2/shortcut/MaxPool:0,import/resnet_v2_50/pool5:0',
                         images_dir='../../../Desktop/imgs/*.png', img_dir='', upload_img_path='../../../Desktop/coat_red_0.png', top_n=None):
     fe = FeatureExtractor(model_path=model_path, output_args=output_args)
