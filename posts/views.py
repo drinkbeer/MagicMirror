@@ -16,3 +16,7 @@ class CreatePostView(CreateView):
     form_class = PostForm
     template_name = 'post.html'
     success_url = reverse_lazy('home')
+
+class SearchResultView(ListView):
+    model = Post
+    template_name = 'home.html'
