@@ -3,9 +3,11 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.http import HttpResponse
 
 from .models import Post
 from .forms import PostForm
+from .search import SearchForm
 from .utils import get_top_n_similar
 
 # Create your views here.
@@ -31,3 +33,20 @@ class SearchResultView(ListView):
         return Post.objects.filter(
             Q(cover = ranked_img_paths[0])
         )
+
+def search_by_image(request):
+
+    print("Great! You successfully called method search_by_image")
+
+    if request.method == 'POST':
+        print("Great! You successfully submitted a POST request of your image")
+        myimage = request.FILES['myimage']
+
+        print(myimage.name)
+
+        return HttpResponse("Image has been submitted successfully")
+
+    return HttpResponse("Image has not been submitted")
+    
+
+

@@ -2,15 +2,29 @@
 <h1>Migic Mirrow - the dream to search products by images</h1>
 <h3>Author: Shuang Xie, Jason Chen</h3>
 
+<h3>Search by key words</h3>
 <form action="{% url 'search_results' %}" method="get">
     <input name="q" type="text" placeholder="Search...">
 </form>
+
+<h3>Search by images</h3>
+<body> 
+    <!-- <form method="post" enctype="multipart/form-data"> -->
+    <form action="{% url 'search_by_image' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <!-- <input type="file" name="myfile"> -->
+            <input id="id_image" type="file" name="myimage">
+        </p>
+        <button type="submit">Search Similarity</button>
+    </form>
+</body>
 
 <ul>
   {% for post in object_list %}
     <h2>{{ post.title }}</h2>
     <i>{{ post.detail }}</i>
     <br>
-    <img src="{{ post.cover.url}}" alt="{{ post.title }}">
+    <img src="{{ post.cover.url }}" alt="{{ post.title }}">
   {% endfor %}
 </ul>
