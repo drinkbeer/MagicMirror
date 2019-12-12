@@ -10,6 +10,8 @@ from .forms import PostForm
 from .search import SearchForm
 from .utils import get_top_n_similar
 
+from django.core.files.storage import FileSystemStorage
+
 # Create your views here.
 class HomePageView(ListView):
     model = Post
@@ -43,7 +45,11 @@ def search_by_image(request):
         myimage = request.FILES['myimage']
 
         print(myimage.name)
+        fs = FileSystemStorage()
+        filename = fs.save(myimage.name, myimage)
+        uploaded_file_url = fs.url(filename)
 
+        print("temp file name: " + uploaded_file_url)
         return HttpResponse("Image has been submitted successfully")
 
     return HttpResponse("Image has not been submitted")
