@@ -82,11 +82,11 @@ class ImportGraph():
             graph_filename = graph_path 
         # Create a graph def object to read the graph 
         with tf.gfile.GFile(graph_filename, "rb") as f: 
-            graph_def = tf.GraphDef() 
+            graph_def = tf.GraphDef()
             graph_def.ParseFromString(f.read())
         tf.import_graph_def(graph_def)
 
-    def run(self, *args): 
+    def run(self, *args):
         """ Running the model previously imported """ 
         return self.sess.run(self.output_tensor, feed_dict={input_tensor: data for input_tensor,data in zip(self.input_tensor, args)})
 
@@ -108,3 +108,4 @@ class FeatureExtractor():
             print('Warning: No uploaded image!!!') 
             return None 
         return self.model.run(resize_imgs(img, self.img_shape)) 
+        
