@@ -54,13 +54,15 @@ def search_by_image(request):
         print("temp file name: " + uploaded_file_url)
 
         obj_list = Post.objects.none()
-        for index, rank_img_path in enumerate(ranked_img_paths[:3]):
+        for index, rank_img_path in enumerate(ranked_img_paths[:5]):
             obj_list |= Post.objects.filter(Q(cover = rank_img_path))
         obj_list = obj_list.annotate(
                             search_type_ordering=models.Case(
-                            models.When(Q(cover = ranked_img_paths[0]), then=models.Value(2)),
-                            models.When(Q(cover = ranked_img_paths[1]), then=models.Value(1)),
-                            models.When(Q(cover = ranked_img_paths[2]), then=models.Value(0)),
+                            models.When(Q(cover = ranked_img_paths[0]), then=models.Value(4)),
+                            models.When(Q(cover = ranked_img_paths[1]), then=models.Value(3)),
+                            models.When(Q(cover = ranked_img_paths[2]), then=models.Value(2)),
+                            models.When(Q(cover = ranked_img_paths[3]), then=models.Value(1)),
+                            models.When(Q(cover = ranked_img_paths[4]), then=models.Value(0)),
                             default=models.Value(-1),
                             output_field=models.IntegerField(),
                             )
