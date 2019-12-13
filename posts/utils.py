@@ -58,7 +58,7 @@ def get_top_n_similar(model_path='./media/resource/frozen_inference_graph.pb',
     similarities_shallow = rank_similarity(upload_feature_shallow, features_shallow, len(images))
     similarities_deep = rank_similarity(upload_feature_deep, features_deep, len(images))
     rank_indices = (similarities_deep).argsort()[:top_n][::-1]
-    return [images_path[index] for index in rank_indices]
+    return [images_path[index] for index in rank_indices], rank_indices
 
 class ImportGraph(): 
     """ Importing and running isolated TF graph """ 
