@@ -23,7 +23,7 @@
 <ul>
   {% for post in object_list %}
     <h2><a href="{{ post.link }}">{{ post.title }}</a></h2>
-    <i>{{ post.detail }}</i>
+    <!-- <i>{{ post.detail }}</i> -->
     <br>
     <img src="{{ post.cover.url}}" height="396" alt="{{ post.title }}">
   {% endfor %}
